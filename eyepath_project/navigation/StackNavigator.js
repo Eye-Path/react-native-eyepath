@@ -10,6 +10,9 @@ const StackNavigator = () => {
             <Stack.Screen
                 name="MainPage"
                 component={MainPage}
+                options={{
+                    headerShown: false,
+                }}
             />
         </Stack.Navigator>
     );
