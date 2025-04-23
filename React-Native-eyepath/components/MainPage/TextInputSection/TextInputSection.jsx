@@ -1,25 +1,30 @@
 import React from "react";
 import { View, TextInput, StyleSheet, TouchableOpacity, Image } from "react-native";
 
-const TextInputComponent = () => {
+const TextInputSection = () => {
     return (
         <View style={styles.container}>
-            <View style={styles.textinputwrapper}>
-                <TextInput
+            <View style={styles.textInputWrapper}>
+                <TextInput /* input */
                     placeholder="목적지를 입력해주세요."
                     placeholderTextColor="#a9a9a9"
                     style={styles.input}
                 />
-                <TouchableOpacity>
-                    <Image source={require('../../assets/public/microphone-01.png')} style={styles.icon} />
+                {/* 마이크 아이콘 */}
+                <TouchableOpacity style={styles.iconMic}> 
+                    <Image source={require('../../../assets/public/components/TextInputSection/microphone.png')} style={styles.icon} />
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity>
-                <Image source={require('../../assets/public/navigation-pointer-01.png')} style={styles.icon} />
+            {/* 화살표 아이콘 */}
+            <TouchableOpacity style={styles.iconArrow}> 
+                <Image source={require('../../../assets/public/components/TextInputSection/navigation-pointer.png')} style={styles.icon} />
             </TouchableOpacity>
         </View>
     );
     }
+
+export default TextInputSection;
+
 const styles = StyleSheet.create({
 
     container: {
@@ -30,7 +35,7 @@ const styles = StyleSheet.create({
         marginTop: 18,
     },
 
-    textinputwrapper: {
+    textInputWrapper: {
         marginTop: 18,
         display: 'flex',
         flexDirection: 'row',
@@ -49,9 +54,27 @@ const styles = StyleSheet.create({
     },
 
     icon: {
+        display: 'flex',
         width: 24,
         height: 24,
+    },
+
+    iconMic: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         marginRight: 14,
     },
+
+    iconArrow: {
+        marginTop: 18,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderColor: "#9090FF",
+        height: 42,
+        width: 42,
+        borderRadius: 25,
+        boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.25)",
+    },
 });
-export default TextInputComponent;

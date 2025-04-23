@@ -15,6 +15,7 @@ const StackNavigator = () => {
                 }}
             />
         </Stack.Navigator>
+        
     );
 }
 
