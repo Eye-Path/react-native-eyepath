@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 
-const navigationSection = () => {
+const presetDestinationSection = () => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.buttonContainer} onPress={() => console.log("press")}>
@@ -20,7 +20,7 @@ const navigationSection = () => {
   )
 }
 
-export default navigationSection
+export default presetDestinationSection
 
 const styles = StyleSheet.create({
   container: {
