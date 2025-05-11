@@ -1,22 +1,23 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MainPage from '../pages/MainPage';
 
 const Stack = createNativeStackNavigator();
 
 const StackNavigator = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="MainPage"
-        component={MainPage}
-        options={{
-          headerShown: false,
-        }}
-      />
-    </Stack.Navigator>
-  );
-};
+    return (    
+        <Stack.Navigator>
+            <Stack.Screen
+                name="MainPage"
+                component={MainPage}
+                options={{
+                    headerShown: false,
+                }}
+            />
+        </Stack.Navigator>
+        
+    );
+}
 
 export default StackNavigator;
 
@@ -42,6 +43,7 @@ const StackNavigator = () => {
 }
 
 export default StackNavigator;*/
+
 
 // App.js 또는 StackNavigator.js
 /*import React from 'react';
