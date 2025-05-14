@@ -6,7 +6,7 @@ const ServerTestPage = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://223.130.147.155:8000/route')
+    axios.get('http://211.188.49.127:8000/route')
       .then(res => setData(res.data))
       .catch(err => setData([{ error: err.message }]));
   }, []);

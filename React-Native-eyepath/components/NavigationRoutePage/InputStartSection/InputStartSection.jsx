@@ -20,7 +20,7 @@ const TextInputSection = () => {
         onPress={() => navigation.navigate('SearchPage')}
       >
         <TextInput /* input */
-          placeholder="출발지를 입력해주세요."
+          placeholder="출발지가 들어가야함."
           placeholderTextColor="#a9a9a9"
           style={styles.input}
           editable={false} // 텍스트 입력을 막음
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 18,
+    
   },
 
   textInputWrapper: {
@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    height: 42,
-    width: 330,
+    height: 57,
+    width: '100%',
     borderWidth: 1,
     borderColor: '#9090FF',
     borderRadius: 25,

@@ -20,6 +20,7 @@ const StartCard = () => {
           <Text style={{fontFamily: 'Roboto-bold', fontWeight: 'bold', color: '#FFFFFF', fontSize: 35,}}>시작하기</Text>
         </TouchableOpacity>
       </View>
+      
     </>
   )
 }
@@ -68,12 +69,11 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: '#000000',
-      
-      width: 310,
+      width: 250,
       height: 80,
       borderRadius: 20,
       marginBottom: 30,
-      marginLeft: 9.5,
+      marginLeft: 40,
       
   },
 

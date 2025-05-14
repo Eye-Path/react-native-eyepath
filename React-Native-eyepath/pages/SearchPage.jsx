@@ -7,23 +7,30 @@ import TextInputSection from '../components/SearchPage/TextInputSection/TextInpu
 
 const { height, width } = Dimensions.get('window');
 
-const SearchPage = () => {
+const SearchPage = ({ route }) => {
+
+  const keyword = route?.params?.keyword || '';
+
   return (
     <View style={styles.container}>
-        <TextInputSection/>
+        <TextInputSection keyword={keyword}/>
         <PresetDestination/>
         <RecentDestination/>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1, 
-    paddingHorizontal: width * 0.05,
-    paddingVertical: height * 0.03,
-    backgroundColor: '#fff', 
-  },
-});
 
 export default SearchPage;
+
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    flex: 1,
+    backgroundColor: '#F8F7FF',
+    paddingTop: 50,
+    paddingLeft: 32,
+    paddingRight: 32,
+    paddingBottom: 100,
+  },
+});

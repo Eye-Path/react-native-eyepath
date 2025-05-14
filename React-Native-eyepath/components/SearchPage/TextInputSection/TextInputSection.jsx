@@ -3,16 +3,15 @@ import { View, TextInput, StyleSheet, TouchableOpacity, Image } from "react-nati
 import { useNavigation } from '@react-navigation/native';
 import { useState } from "react";
 
-const TextInputSection = () => {
+const TextInputSection = ({ keyword }) => {
 
     const navigation = useNavigation();
-    const [inputValue, setInputValue] = useState('');
-
+    const [inputValue, setInputValue] = useState(keyword);
 
     return (
         <View style={styles.container}>
             <View style={styles.textInputWrapper}>
-                            {/* 뒤로가기 버튼 */}
+                {/* 뒤로가기 버튼 */}
                 <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
                     <Image source={require('../../../assets/public/components/TextInputSection/arrow.png')} style={styles.backIcon} />
                 </TouchableOpacity>
@@ -23,7 +22,11 @@ const TextInputSection = () => {
                     style={styles.input}
                     value={inputValue}
                     onChangeText={setInputValue}
-                    onSubmitEditing={() => navigation.navigate('SearchPage_2')}
+                    onSubmitEditing={() => {
+                        if (inputValue.trim() !== '') {
+                            navigation.navigate('SearchPage_2', { keyword: inputValue });
+                        }
+                    }}
                 />
                 {/* 마이크 아이콘 */}
                 <TouchableOpacity style={styles.iconMic}> 
@@ -45,7 +48,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginTop: 18,
+        width: '100%',
     },
 
     backButton: {
@@ -67,7 +70,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         height: 57,
-        width: 350,
+        width: '100%',
         borderWidth: 1,
         borderColor: "#9090FF",
         borderRadius: 25,
@@ -76,6 +79,8 @@ const styles = StyleSheet.create({
         boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.25)",
     },
     input: {
+        flex: 1,
+        textAlign: 'center',
         paddingLeft: 9,
         fontSize: 18,
     },

@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import { View, TextInput, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 
@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 const TextInputSection = () => {
 
     const navigation = useNavigation();
+    const [inputValue, setInputValue] = useState('');
 
     return (
         <View style={styles.container}>
@@ -14,6 +15,12 @@ const TextInputSection = () => {
                     placeholder="목적지를 입력해주세요."
                     placeholderTextColor="#000000"
                     style={styles.input}
+                    onChangeText={setInputValue}
+                    onSubmitEditing={() => {
+                        if (inputValue.trim() !== '') {
+                            navigation.navigate('SearchPage_2', { keyword: inputValue });
+                        }
+                    }}
                 />
                 {/* 마이크 아이콘 */}
                 <TouchableOpacity style={styles.iconMic}> 
@@ -38,6 +45,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         marginTop: 18,
+        width: '100%',
     },
 
     textInputWrapper: {
@@ -46,7 +54,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         height: 57,
-        width: 279,
+        width: 260,
         borderWidth: 1,
         borderColor: "#9090FF",
         borderRadius: 25,
@@ -57,6 +65,8 @@ const styles = StyleSheet.create({
     input: {
         paddingLeft: 9,
         fontSize: 18,
+        flex: 1,
+        textAlign: 'center',
     },
 
     icon: {

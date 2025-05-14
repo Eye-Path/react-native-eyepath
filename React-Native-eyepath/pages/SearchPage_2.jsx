@@ -5,11 +5,14 @@ import PlaySection from '../components/SearchPage_2/PlaySection/PlaySection';
 
 const { height } = Dimensions.get('window');
 
-const App = () => {
+const SearchPage_2 = ({ route }) => {
+
+  const keyword = route?.params?.keyword || '';
+
   return (
     <View style={styles.pageContainer}>
       {/* 상단 TextInput */}
-      <TextInputSection />
+      <TextInputSection keyword={keyword} />
       
       {/* 스크롤 가능한 컨텐츠 */}
       <ScrollView style={styles.scrollContainer}>
@@ -17,7 +20,7 @@ const App = () => {
       </ScrollView>
 
       {/* 하단 Destination Bottom Sheet */}
-      <PlaySection />
+      <PlaySection keyword={keyword} />
     </View>
   );
 };
@@ -26,6 +29,10 @@ const styles = StyleSheet.create({
   pageContainer: {
     flex: 1,
     backgroundColor: '#f8f8f8',
+    paddingTop: 50,
+    paddingLeft: 32,
+    paddingRight: 32,
+    paddingBottom: 100,
   },
   scrollContainer: {
     flex: 1,
@@ -33,4 +40,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default SearchPage_2;

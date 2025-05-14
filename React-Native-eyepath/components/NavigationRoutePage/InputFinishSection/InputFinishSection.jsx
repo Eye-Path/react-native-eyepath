@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState } from 'react';
 import {
   View,
   TextInput,
@@ -9,20 +9,23 @@ import {
 
 import { useNavigation } from '@react-navigation/native';
 
-const TextInputSection = () => {
+
+const TextInputSection = ({keyword}) => {
 
   const navigation = useNavigation();
+  const [inputValue, setInputValue] = useState(keyword);
 
   return (
     <View style={styles.container}>
       <TouchableOpacity 
         style={styles.textInputWrapper}
-        onPress={() => navigation.navigate('SearchPage')}
+        onPress={() => navigation.navigate('SearchPage', { keyword: inputValue })} // 여기서 바로 이동
       >
         <TextInput /* input */
-          placeholder="목적지를 입력해주세요."
-          placeholderTextColor="#a9a9a9"
+          placeholder={inputValue}
+          placeholderTextColor="#000000"
           style={styles.input}
+          onChangeText={setInputValue}
           editable={false} // 텍스트 입력을 막음
           pointerEvents="none" // 클릭만 가능하게 만들기
         />
@@ -54,8 +57,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    height: 42,
-    width: 330,
+    height: 57,
+    width: '100%',
     borderWidth: 1,
     borderColor: '#9090FF',
     borderRadius: 25,
