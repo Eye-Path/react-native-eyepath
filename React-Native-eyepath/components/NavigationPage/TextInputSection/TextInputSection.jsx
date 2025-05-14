@@ -10,6 +10,11 @@ const TextInputSection = () => {
     return (
         <View style={styles.container}>
             <View style={styles.textInputWrapper}>
+                            {/* 뒤로가기 버튼 */}
+                <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+                    <Image source={require('../../../assets/public/components/TextInputSection/arrow.png')} style={styles.backIcon} />
+                </TouchableOpacity>
+
                 <TextInput /* input */
                     placeholder="목적지를 입력해주세요."
                     placeholderTextColor="#000000"
@@ -24,6 +29,8 @@ const TextInputSection = () => {
             <TouchableOpacity style={styles.iconArrow} onPress={() => navigation.navigate('SearchPage')}> 
                 <Image source={require('../../../assets/public/components/TextInputSection/navigation-pointer.png')} style={styles.icon} />
             </TouchableOpacity>
+
+            
         </View>
     );
     }
@@ -38,6 +45,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         marginTop: 18,
+    },
+
+    backButton: {
+        display: 'flex',
+        marginLeft: 15,
+        retate: '90deg',
+    },
+
+    backIcon: {
+        display: 'flex',
+        width: 24,
+        height: 24,
+        transform: [{ rotate: '270deg' }],
     },
 
     textInputWrapper: {

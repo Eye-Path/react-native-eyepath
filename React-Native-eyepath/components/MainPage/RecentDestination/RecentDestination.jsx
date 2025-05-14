@@ -1,5 +1,7 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import { useState } from 'react';
+import { PanGestureHandler } from 'react-native-gesture-handler';
+import Animated, { useSharedValue, useAnimatedStyle, useAnimatedGestureHandler, withSpring, runOnJS } from 'react-native-reanimated';
 
 
 
@@ -46,7 +48,6 @@ export default RecentDestination;
 const styles = StyleSheet.create({
     container: {
         display: 'flex',
-
         flexDirection: 'column',
         marginTop: 32,
     },

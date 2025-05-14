@@ -14,7 +14,7 @@ const MainPage = () => {
         <TextInputSection />
         <StartCard />
         <NavigationSection/>
-        <RecentDestination />
+        <RecentDestination /> 
     </ScrollView>
   );
 };

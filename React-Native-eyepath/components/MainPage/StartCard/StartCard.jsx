@@ -1,22 +1,26 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { useNavigation } from '@react-navigation/native';
 
 
 const StartCard = () => {
 
-    
+  const navigation = useNavigation();  
+  
 
   return (
-    <View style={styles.container}>
-      <View style={styles.textContainer}>
-        <Text style={styles.cardTitle}>AI 음성 길찾기</Text>
-        <Text style={styles.cardMainLine}>걷는 모든 길에,</Text>
-        <Text style={styles.cardMainLine}>당신만을 위한 안내가 따라갑니다.</Text>
+    <>
+      <View style={styles.container}>
+        <View style={styles.textContainer}>
+          <Text style={styles.cardTitle}>AI 음성 길찾기</Text>
+          <Text style={styles.cardMainLine}>걷는 모든 길에,</Text>
+          <Text style={styles.cardMainLine}>당신만을 위한 안내가 따라갑니다.</Text>
+        </View>
+        <TouchableOpacity onPress={() => navigation.navigate('ServerTestPage')} style={styles.button}>
+          <Text style={{fontFamily: 'Roboto-bold', fontWeight: 'bold', color: '#FFFFFF', fontSize: 35,}}>시작하기</Text>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={() => console.log("press")} style={styles.button}>
-        <Text style={{fontFamily: 'Roboto-bold', fontWeight: 'bold', color: '#FFFFFF', fontSize: 12,}}>시작하기</Text>
-      </TouchableOpacity>
-    </View>
+    </>
   )
 }
 
@@ -27,8 +31,8 @@ const styles = StyleSheet.create({
       display: 'flex',
       alignItems: 'flex-start',
       justifyContent: 'space-between',
-      flexDirection: 'row',
-      height: 129,
+      flexDirection: 'column',
+      height: 241,
       borderRadius: 20,
       marginTop: 45,
       backgroundColor: '#9090FF',
@@ -38,11 +42,12 @@ const styles = StyleSheet.create({
       display: 'flex',
       alignItems: 'flex-start',
       backgroundColor: '#9090FF',
+
       
   },
   cardTitle: {
       fontFamily: 'Roboto-bold',
-      fontSize: 12,
+      fontSize: 20,
       fontWeight: 'bold',
       color: '#FFFFFF',
       paddingLeft: 14,
@@ -51,7 +56,7 @@ const styles = StyleSheet.create({
   },
   cardMainLine: {
       fontFamily: 'Roboto-bold',
-      fontSize: 16,
+      fontSize: 20,
       paddingLeft: 14,
       paddingTop: 6,
       fontWeight: 'bold',
@@ -63,11 +68,13 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: '#000000',
-      width: 80,
+      
+      width: 310,
       height: 80,
       borderRadius: 20,
-      marginTop: 25,
-      marginRight: 14,
+      marginBottom: 30,
+      marginLeft: 9.5,
+      
   },
 
 });
