@@ -16,7 +16,7 @@ const StartCard = () => {
           <Text style={styles.cardMainLine}>걷는 모든 길에,</Text>
           <Text style={styles.cardMainLine}>당신만을 위한 안내가 따라갑니다.</Text>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate('ServerTestPage')} style={styles.button}>
+        <TouchableOpacity onPress={() => navigation.navigate('NavigationPage')} style={styles.button}>
           <Text style={{fontFamily: 'Roboto-bold', fontWeight: 'bold', color: '#FFFFFF', fontSize: 35,}}>시작하기</Text>
         </TouchableOpacity>
       </View>
