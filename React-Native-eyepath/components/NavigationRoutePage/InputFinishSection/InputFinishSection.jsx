@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import {React, useState} from 'react';
 import {
   View,
   TextInput,
@@ -7,19 +7,17 @@ import {
   Image,
 } from 'react-native';
 
-import { useNavigation } from '@react-navigation/native';
-
+import {useNavigation} from '@react-navigation/native';
 
 const TextInputSection = ({keyword}) => {
-
   const navigation = useNavigation();
   const [inputValue, setInputValue] = useState(keyword);
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity 
+      <TouchableOpacity
         style={styles.textInputWrapper}
-        onPress={() => navigation.navigate('SearchPage', { keyword: inputValue })} // 여기서 바로 이동
+        onPress={() => navigation.navigate('SearchPage', {keyword: inputValue})} // 여기서 바로 이동
       >
         <TextInput /* input */
           placeholder={inputValue}

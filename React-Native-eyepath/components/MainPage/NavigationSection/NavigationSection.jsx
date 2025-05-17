@@ -1,27 +1,39 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
-import React from 'react'
+import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
+import React from 'react';
 
 const navigationSection = () => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.buttonContainer} onPress={() => console.log("press")}>
-        <Image source={require('../../../assets/public/components/NavigationSection/home.png')} style={styles.icon} />
+      <TouchableOpacity
+        style={styles.buttonContainer}
+        onPress={() => console.log('press')}>
+        <Image
+          source={require('../../../assets/public/components/NavigationSection/home.png')}
+          style={styles.icon}
+        />
         <Text style={styles.buttonHomeText}>집</Text>
         <Text style={styles.buttonTimeText}>12분</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.buttonContainer} onPress={() => console.log("press")}>
-        <Image source={require('../../../assets/public/components/NavigationSection/building.png')} style={styles.icon} />
+      <TouchableOpacity
+        style={styles.buttonContainer}
+        onPress={() => console.log('press')}>
+        <Image
+          source={require('../../../assets/public/components/NavigationSection/building.png')}
+          style={styles.icon}
+        />
         <Text style={styles.buttonHomeText}>회사</Text>
         <Text style={styles.buttonTimeText}>36분</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.settingButton} onPress={() => console.log("press")}>
+      <TouchableOpacity
+        style={styles.settingButton}
+        onPress={() => console.log('press')}>
         <Text style={styles.buttonSettingText}>설정</Text>
       </TouchableOpacity>
     </View>
-  )
-}
+  );
+};
 
-export default navigationSection
+export default navigationSection;
 
 const styles = StyleSheet.create({
   container: {
@@ -86,4 +98,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000000',
   },
-})
+});

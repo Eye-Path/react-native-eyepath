@@ -7,7 +7,7 @@ import MicSection from '../components/NavigationRoutePage_2/MicSection/MicSectio
 
 const NavigationRoutePage_2 = () => {
   return (
-    <ScrollView  contentContainerStyle={styles.background}>
+    <ScrollView contentContainerStyle={styles.background}>
       <View>
         <InfoBox />
         <MicSection />

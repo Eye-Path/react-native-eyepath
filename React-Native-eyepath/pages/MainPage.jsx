@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import {StyleSheet, ScrollView} from 'react-native';
 
 import MainTitle from '../components/MainPage/MainTitle/MainTitle';
 import TextInputSection from '../components/MainPage/TextInputSection/TextInputSection';
@@ -10,11 +10,11 @@ import RecentDestination from '../components/MainPage/RecentDestination/RecentDe
 const MainPage = () => {
   return (
     <ScrollView style={styles.background}>
-        <MainTitle />
-        <TextInputSection />
-        <StartCard />
-        <NavigationSection/>
-        <RecentDestination /> 
+      <MainTitle />
+      <TextInputSection />
+      <StartCard />
+      <NavigationSection />
+      <RecentDestination />
     </ScrollView>
   );
 };
@@ -22,14 +22,13 @@ const MainPage = () => {
 export default MainPage;
 
 const styles = StyleSheet.create({
-
-    background: {
-        display: 'flex',
-        flex: 1,
-        backgroundColor: '#F8F7FF',
-        paddingTop: 50,
-        paddingLeft: 32,
-        paddingRight: 32,
-        paddingBottom: 100,
-    }
-})
+  background: {
+    display: 'flex',
+    flex: 1,
+    backgroundColor: '#F8F7FF',
+    paddingTop: 50,
+    paddingLeft: 32,
+    paddingRight: 32,
+    paddingBottom: 100,
+  },
+});

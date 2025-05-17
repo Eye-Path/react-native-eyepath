@@ -1,16 +1,14 @@
 // components/StartButton.jsx
 import React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-
+import {useNavigation} from '@react-navigation/native';
 
 const StartButton = () => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       style={styles.startButton}
-      onPress={() => navigation.navigate('NavigationRoutePage_2')}
-      >
+      onPress={() => navigation.navigate('NavigationRoutePage_2')}>
       <Text style={styles.startButtonText}>안내 시작</Text>
     </TouchableOpacity>
   );

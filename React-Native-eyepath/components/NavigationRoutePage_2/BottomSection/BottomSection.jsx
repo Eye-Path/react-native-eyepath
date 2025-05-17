@@ -7,43 +7,40 @@ import {
   Text,
   TouchableOpacity,
   View,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
 const BottomSection = () => {
-
   const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
       <View style={styles.handle} />
-        <View style={styles.topRow}>
-          <View>
-            <Text style={styles.timeText}>
-              오후 <Text style={styles.bold}>10:19</Text>
-            </Text>
-            <Text style={styles.label}>도착 예정 시간</Text>
-          </View>
-          <View>
-            <Text style={styles.bold}>700m</Text>
-            <Text style={styles.label}>남은 시간</Text>
-          </View>
-        <View/>
+      <View style={styles.topRow}>
+        <View>
+          <Text style={styles.timeText}>
+            오후 <Text style={styles.bold}>10:19</Text>
+          </Text>
+          <Text style={styles.label}>도착 예정 시간</Text>
+        </View>
+        <View>
+          <Text style={styles.bold}>700m</Text>
+          <Text style={styles.label}>남은 시간</Text>
+        </View>
+        <View />
       </View>
-        <TouchableOpacity 
-          style={styles.button}
-          onPress={() => navigation.navigate('MainPage')}
-          >
-          <Text style={styles.buttonText}>안내 종료</Text>
-        </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('MainPage')}>
+        <Text style={styles.buttonText}>안내 종료</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-
   container: {
     width: '100%',
     height: '00px',
