@@ -16,7 +16,7 @@ const StartCard = () => {
           </Text>
         </View>
         <TouchableOpacity
-          onPress={() => navigation.navigate('ServerTestPage')}
+          onPress={() => navigation.navigate('NavigationPage')}
           style={styles.button}>
           <Text style={styles.buttonText}>시작하기</Text>
         </TouchableOpacity>
