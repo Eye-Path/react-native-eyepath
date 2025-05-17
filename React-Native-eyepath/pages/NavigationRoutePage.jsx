@@ -6,14 +6,13 @@ import InputFinishSection from '../components/NavigationRoutePage/InputFinishSec
 import RouteCard from '../components/NavigationRoutePage/RouteCard/RouteCard';
 import StartButton from '../components/NavigationRoutePage/StartButton/StartButton';
 
-const NavigationRoutePage = ({ route }) => {
-
+const NavigationRoutePage = ({route}) => {
   const keyword = route?.params?.keyword || '';
 
   return (
     <ScrollView style={styles.background}>
       <InputStartSection />
-      <InputFinishSection keyword={keyword}/>
+      <InputFinishSection keyword={keyword} />
       <RouteCard />
       <StartButton />
     </ScrollView>

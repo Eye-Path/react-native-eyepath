@@ -7,18 +7,16 @@ import {
   Image,
 } from 'react-native';
 
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 const TextInputSection = () => {
-
   const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.textInputWrapper}
-        onPress={() => navigation.navigate('SearchPage')}
-      >
+        onPress={() => navigation.navigate('SearchPage')}>
         <TextInput /* input */
           placeholder="출발지가 들어가야함."
           placeholderTextColor="#a9a9a9"
@@ -46,7 +44,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    
   },
 
   textInputWrapper: {

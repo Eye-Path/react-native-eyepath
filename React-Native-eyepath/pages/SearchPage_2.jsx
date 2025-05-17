@@ -1,19 +1,18 @@
 import React from 'react';
-import { View, ScrollView, StyleSheet, Dimensions } from 'react-native';
+import {View, ScrollView, StyleSheet, Dimensions} from 'react-native';
 import TextInputSection from '../components/SearchPage_2/TextInputSection/TextInputSection';
 import PlaySection from '../components/SearchPage_2/PlaySection/PlaySection';
 
-const { height } = Dimensions.get('window');
+const {height} = Dimensions.get('window');
 
-const SearchPage_2 = ({ route }) => {
-
+const SearchPage_2 = ({route}) => {
   const keyword = route?.params?.keyword || '';
 
   return (
     <View style={styles.pageContainer}>
       {/* 상단 TextInput */}
       <TextInputSection keyword={keyword} />
-      
+
       {/* 스크롤 가능한 컨텐츠 */}
       <ScrollView style={styles.scrollContainer}>
         {/* 다른 컨텐츠를 여기에 추가 */}

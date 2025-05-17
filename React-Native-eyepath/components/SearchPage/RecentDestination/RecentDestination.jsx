@@ -1,6 +1,12 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  FlatList,
+} from 'react-native';
 import React from 'react';
-
 
 const recentDestinations = [
   {
@@ -23,10 +29,12 @@ const RecentDestination = () => {
       <FlatList
         data={recentDestinations}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => (
+        renderItem={({item}) => (
           <View style={styles.row}>
             {/* 전체 클릭 버튼 (돋보기 + 텍스트) */}
-            <TouchableOpacity style={styles.destinationButton} onPress={() => console.log('선택:', item.name)}>
+            <TouchableOpacity
+              style={styles.destinationButton}
+              onPress={() => console.log('선택:', item.name)}>
               <Image
                 source={require('../../../assets/public/components/RecentDestinationSection/lens.png')}
                 style={styles.icon}
@@ -35,7 +43,9 @@ const RecentDestination = () => {
             </TouchableOpacity>
 
             {/* 삭제 버튼 (X) */}
-            <TouchableOpacity style={styles.deleteButton} onPress={() => console.log('삭제')}>
+            <TouchableOpacity
+              style={styles.deleteButton}
+              onPress={() => console.log('삭제')}>
               <Image
                 source={require('../../../assets/public/components/RecentDestinationSection/close.png')}
                 style={styles.deleteIcon}

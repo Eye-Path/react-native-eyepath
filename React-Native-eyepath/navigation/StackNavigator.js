@@ -11,7 +11,7 @@ import ServerTestPage from '../pages/ServerTestPage';
 const Stack = createNativeStackNavigator();
 
 const StackNavigator = () => {
-    return (    
+    return (
         <Stack.Navigator>
             <Stack.Screen
                 name="MainPage"
@@ -64,8 +64,7 @@ const StackNavigator = () => {
             />
 
         </Stack.Navigator>
-        
     );
-}
+};
 
 export default StackNavigator;

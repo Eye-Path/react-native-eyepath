@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, {useRef, useState} from 'react';
 import {
   Animated,
   PanResponder,
@@ -9,14 +9,13 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
-const { height } = Dimensions.get('window');
-const MIN_Y = height * 0.5;  // 기본 올라와있는 위치
-const MAX_Y = height - 40;   // 손잡이만 보이게 내리는 위치
+const {height} = Dimensions.get('window');
+const MIN_Y = height * 0.5; // 기본 올라와있는 위치
+const MAX_Y = height - 40; // 손잡이만 보이게 내리는 위치
 
-const PlaySection = ({ keyword }) => {
-
+const PlaySection = ({keyword}) => {
   const [inputValue, setInputValue] = useState(keyword);
 
   const translateY = useRef(new Animated.Value(MIN_Y)).current;
@@ -47,16 +46,15 @@ const PlaySection = ({ keyword }) => {
           }).start();
         }
       },
-    })
+    }),
   ).current;
 
   const navigation = useNavigation();
 
   return (
     <Animated.View
-      style={[styles.container, { top: translateY }]}
-      {...panResponder.panHandlers}
-    >
+      style={[styles.container, {top: translateY}]}
+      {...panResponder.panHandlers}>
       <View style={styles.handle} />
       <View style={styles.destinationWrapper}>
         <View style={styles.destinationTextContainer}>
@@ -64,10 +62,10 @@ const PlaySection = ({ keyword }) => {
             경기대학교 수원캠퍼스 후문(동문)
           </Text>
         </View>
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.navButton}
-          onPress={() => 
-              navigation.navigate('NavigationRoutePage', { keyword: inputValue })
+          onPress={() =>
+            navigation.navigate('NavigationRoutePage', {keyword: inputValue})
           }>
           <Image
             source={require('../../../assets/public/components/PlaySection/play.png')}
@@ -92,7 +90,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 12,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: -3 },
+    shadowOffset: {width: 0, height: -3},
     shadowOpacity: 0.1,
     shadowRadius: 6,
     elevation: 10,
