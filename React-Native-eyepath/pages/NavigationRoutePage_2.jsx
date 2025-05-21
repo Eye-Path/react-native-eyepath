@@ -4,6 +4,7 @@ import {StyleSheet, ScrollView, View} from 'react-native';
 import InfoBox from '../components/NavigationRoutePage_2/InfoBox/InfoBox';
 import BottomSection from '../components/NavigationRoutePage_2/BottomSection/BottomSection';
 import MicSection from '../components/NavigationRoutePage_2/MicSection/MicSection';
+import CameraScreen from '../components/NavigationRoutePage_2/CameraScreen/CameraScreen';
 
 const NavigationRoutePage_2 = () => {
   return (
@@ -12,6 +13,7 @@ const NavigationRoutePage_2 = () => {
         <InfoBox />
         <MicSection />
       </View>
+      <CameraScreen />
       <BottomSection />
     </ScrollView>
   );
