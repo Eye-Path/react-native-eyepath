@@ -76,7 +76,9 @@ export default function CameraScreen() {
 
 const styles = StyleSheet.create({
   center: {
-    alignItems: 'center',
+    alignItems: 'left',
+    flex: 1,
+    
   },
 
   camera: {
