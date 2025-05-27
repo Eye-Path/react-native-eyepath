@@ -1,4 +1,4 @@
-import {React, useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   TextInput,
@@ -6,33 +6,57 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
-const TextInputSection = ({keyword}) => {
+const TextInputSection = ({ keyword, setKeyword }) => {
   const navigation = useNavigation();
-  const [inputValue, setInputValue] = useState(keyword);
+  const [inputValue, setInputValue] = useState(keyword || '');
+
+  useEffect(() => {
+    setInputValue(keyword || '');
+  }, [keyword]);
+
+  const handleInputChange = (text) => {
+    setInputValue(text);
+    setKeyword(text); // 부모에게 입력값 전달
+  };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.textInputWrapper}
-        onPress={() => navigation.navigate('SearchPage', {keyword: inputValue})} // 여기서 바로 이동
-      >
+      <View style={styles.textInputWrapper}>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}
+        >
+          <Image
+            source={require('../../../assets/public/components/TextInputSection/arrow.png')}
+            style={styles.backIcon}
+          />
+        </TouchableOpacity>
+
         <TextInput
-          placeholder={inputValue}
+          placeholder="목적지를 입력해주세요."
           placeholderTextColor="#000000"
           style={styles.input}
-          onChangeText={setInputValue}
-          editable={false} // 텍스트 입력을 막음
-          pointerEvents="none" // 클릭만 가능하게 만들기
+          value={inputValue}
+          onChangeText={handleInputChange}
+          onSubmitEditing={() => {
+            if (inputValue.trim() !== '') {
+              navigation.navigate('SearchPage', { keyword: inputValue });
+            }
+          }}
+          autoCorrect={false}
+          keyboardType="default"
+          multiline={false}
         />
-        <View style={styles.iconMic}>
+
+        <TouchableOpacity style={styles.iconMic}>
           <Image
             source={require('../../../assets/public/components/TextInputSection/microphone.png')}
             style={styles.icon}
           />
-        </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -41,14 +65,24 @@ export default TextInputSection;
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    width: '100%',
   },
+
+  backButton: {
+    marginLeft: 15,
+  },
+
+  backIcon: {
+    width: 24,
+    height: 24,
+    transform: [{ rotate: '270deg' }],
+  },
+
   textInputWrapper: {
     marginTop: 18,
-    display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     height: 57,
@@ -57,19 +91,32 @@ const styles = StyleSheet.create({
     borderColor: '#9090FF',
     borderRadius: 25,
     backgroundColor: '#FFFFFF',
+
     justifyContent: 'space-between',
-    boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.25)',
+
+    // Android 그림자
+    elevation: 4,
+
+    // iOS 그림자
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
+
   input: {
-    textAlign: 'center',
-    fontSize: 16,
-    color: '#000000',
     flex: 1,
+    textAlign: 'left',
+    paddingLeft: 9,
+    fontSize: 18,
+    color: '#000',
   },
+
   icon: {
     width: 24,
     height: 24,
   },
+
   iconMic: {
     justifyContent: 'center',
     alignItems: 'center',

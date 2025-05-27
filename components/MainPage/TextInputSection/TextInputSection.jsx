@@ -20,10 +20,8 @@ const TextInputSection = () => {
           placeholderTextColor="#000000"
           style={styles.input}
           onChangeText={setInputValue}
-          onSubmitEditing={() => {
-            if (inputValue.trim() !== '') {
-              navigation.navigate('SearchPage_2', {keyword: inputValue});
-            }
+          onPress={() => {
+            navigation.navigate('SearchPage');
           }}
         />
         {/* 마이크 아이콘 */}

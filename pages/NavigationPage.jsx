@@ -62,23 +62,23 @@ import TmapPage from '../components/NavigationPage/TmapPage';
 const NavigationPage = () => {
   return (
     <View style={styles.container}>
-      
-      {/* 지도 배경 */}
+
+      {/* 지도 배경: 항상 터치 가능 */}
       <View style={styles.mapContainer}>
         <TmapPage />
       </View>
 
-      {/* UI 겹치기 */}
-      <View style={[styles.overlay, { pointerEvents: 'none' }]}>
-      <TextInputSection />
-      <NavigationSection />
-       </View>
+      {/* UI 겹치기: 투명 부분 터치 투과, 자식 컴포넌트는 터치 가능 */}
+      <View style={styles.overlay} pointerEvents="box-none">
+        <TextInputSection />
+        <NavigationSection />
+      </View>
 
-      <View style={styles.recentDes}>
+      {/* 최근 목적지: 완전 UI 영역, 터치 가능 */}
+      <View style={styles.recentDes} pointerEvents="auto">
         <RecentDestination />
       </View>
 
-      
     </View>
   );
 };
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   },
 
   mapContainer: {
-    ...StyleSheet.absoluteFillObject, // 화면 전체에 덮기
+    ...StyleSheet.absoluteFillObject, // 화면 전체 덮기
     zIndex: 0,
   },
 

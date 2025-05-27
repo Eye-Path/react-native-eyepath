@@ -8,6 +8,7 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
+  SectionList,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
@@ -15,8 +16,8 @@ const {height} = Dimensions.get('window');
 const MIN_Y = height * 0.5; // 기본 올라와있는 위치
 const MAX_Y = height - 40; // 손잡이만 보이게 내리는 위치
 
-const PlaySection = ({keyword}) => {
-  const [inputValue, setInputValue] = useState(keyword);
+const PlaySection = ({ selectedPlace }) => {
+  const [inputValue] = useState(selectedPlace?.name || '');
 
   const translateY = useRef(new Animated.Value(MIN_Y)).current;
 
@@ -50,7 +51,8 @@ const PlaySection = ({keyword}) => {
   ).current;
 
   const navigation = useNavigation();
-
+  console.log('주소:', selectedPlace.address);
+  
   return (
     <Animated.View
       style={[styles.container, {top: translateY}]}
@@ -58,9 +60,7 @@ const PlaySection = ({keyword}) => {
       <View style={styles.handle} />
       <View style={styles.destinationWrapper}>
         <View style={styles.destinationTextContainer}>
-          <Text style={styles.destination}>
-            경기대학교 수원캠퍼스 후문(동문)
-          </Text>
+        <Text style={styles.destination}>{selectedPlace.name}</Text>
         </View>
         <TouchableOpacity
           style={styles.navButton}
@@ -73,7 +73,7 @@ const PlaySection = ({keyword}) => {
           />
         </TouchableOpacity>
       </View>
-      <Text style={styles.address}>경기도 수원시 영통구 광교산로 154-42</Text>
+      <Text style={styles.address}>{selectedPlace.address}</Text>
     </Animated.View>
   );
 };

@@ -77,48 +77,37 @@ export default TmapPage;
 //컴퓨터 테스트용 코드
 
 import React, { useEffect, useRef } from 'react';
-import { View, StyleSheet } from 'react-native';
 import { WebView } from 'react-native-webview';
 
-const TmapPage = () => {
+const TmapPage = ({ destination }) => {
   const webviewRef = useRef(null);
 
-  // 예시 좌표 (서울 시청)
-  const testLocation = {
-    latitude: 37.265974,
-    longitude: 127.000174,
-  };
-
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (webviewRef.current) {
-        webviewRef.current.postMessage(JSON.stringify(testLocation));
-      }
-    }, 1000); // WebView가 로드되도록 1초 기다림
+    if (destination && webviewRef.current) {
+      const message = JSON.stringify({
+        action: 'moveToDestination',
+        payload: {
+          lat: destination.latitude,
+          lon: destination.longitude,
+        },
+      });
 
-    return () => clearTimeout(timer);
-  }, []);
+      webviewRef.current.postMessage(message);
+    }
+  }, [destination]);
 
   return (
-    <View style={styles.container}>
-      <WebView
-        ref={webviewRef}
-        source={{ uri: 'https://incomparable-marigold-7c65eb.netlify.app/' }}
-        style={{ flex: 1 }}
-        javaScriptEnabled
-        domStorageEnabled
-        originWhitelist={['*']}
-        mixedContentMode="always"
-      />
-    </View>
+    <WebView
+      ref={webviewRef}
+      source={{ uri: 'https://effulgent-boba-3146bc.netlify.app/' }}
+      originWhitelist={['*']}
+      javaScriptEnabled={true}
+      domStorageEnabled={true}
+    />
   );
 };
 
 export default TmapPage;
-
-const styles = StyleSheet.create({
-  container: { flex: 1 },
-});
 
 
 
