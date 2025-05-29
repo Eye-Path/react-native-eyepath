@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Tmap 지도</title>
+    <script src="https://apis.openapi.sk.com/tmap/vectorjs?version=1&appKey=YOUR_APP_KEY"></script>
+    <style>
+      html, body, #map_div {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+      }
+    </style>
+   <script type="text/javascript">
+    var map;      // 전역 지도 객체
+    var marker;   // 전역 마커 객체
+
+    function initTmap(){
+        map = new Tmapv3.Map("map_div", {
+            center : new Tmapv3.LatLng(37.56520450, 126.98702028),
+            width : "100%",
+            height : "100%",
+            zoom : 15,
+        });
+    }
+
+    // 지도 중심 이동 및 마커 표시 함수
+    function setMapCenterAndMarker(lat, lng) {
+        var center = new Tmapv3.LatLng(lat, lng);
+        map.setCenter(center);
+        map.setZoom(17);
+
+        // 기존 마커 있으면 제거
+        if (marker) {
+            marker.setMap(null);
+        }
+
+        marker = new Tmapv3.Marker({
+            position: center,
+            map: map,
+        });
+    }
+
+    // React Native에서 메시지 받기
+    window.addEventListener('message', function(event) {
+        try {
+            var data = JSON.parse(event.data);
+            if (data.action === 'setLocation') {
+                setMapCenterAndMarker(data.lat, data.lng);
+            }
+        } catch(e) {
+            console.error('Invalid message data', e);
+        }
+    });
+
+   </script>
+</head>
+<body onload="initTmap()">
+    <div id="map_div"></div>
+</body>
+</html>
