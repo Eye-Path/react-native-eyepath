@@ -1,19 +1,31 @@
 import * as React from 'react';
 import {StyleSheet, ScrollView, View} from 'react-native';
+import {useState} from 'react';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
 import InfoBox from '../components/NavigationRoutePage_2/InfoBox/InfoBox';
 import BottomSection from '../components/NavigationRoutePage_2/BottomSection/BottomSection';
 import MicSection from '../components/NavigationRoutePage_2/MicSection/MicSection';
+import CameraScreen from '../components/NavigationRoutePage_2/CameraScreen/CameraScreen';
+import Camera from '../components/NavigationRoutePage_2/CameraScreen/Camera';
+
+const queryClient = new QueryClient();
 
 const NavigationRoutePage_2 = () => {
+  const [photoPath, setPhotoPath] = useState(null);
+
   return (
-    <ScrollView contentContainerStyle={styles.background}>
-      <View>
-        <InfoBox />
-        <MicSection />
-      </View>
-      <BottomSection />
-    </ScrollView>
+    <QueryClientProvider client={queryClient}>
+      <ScrollView contentContainerStyle={styles.background}>
+        <View>
+          <InfoBox />
+          <MicSection />
+        </View>
+        <CameraScreen setPhotoPath={setPhotoPath} />
+        <Camera photoPath={photoPath} />
+        <BottomSection />
+      </ScrollView>
+    </QueryClientProvider>
   );
 };
 
