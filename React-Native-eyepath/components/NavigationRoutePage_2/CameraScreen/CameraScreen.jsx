@@ -1,4 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
+import {useIsFocused} from '@react-navigation/native';
 import {View, Text, StyleSheet} from 'react-native';
 import {Camera, useCameraDevices} from 'react-native-vision-camera';
 import RNFS from 'react-native-fs';
@@ -17,6 +18,8 @@ export default function CameraScreen({setPhotoPath}) {
   const [photoPathState, setPhotoPathState] = useState(null);
 
   const checkTimer = useRef(null);
+
+  const isFocused = useIsFocused();
 
   // 오래된 이미지 삭제 함수
   const cleanupOldImages = async () => {
@@ -61,15 +64,16 @@ export default function CameraScreen({setPhotoPath}) {
     return () => clearInterval(checkTimer.current);
   }, []);
 
-  //1초마다 사진을 찍음
   useEffect(() => {
-    if (permission === 'authorized' && device && cameraRef.current) {
-      //권한, 디바이스, 카메라 프레임 중 하나라도 오류면 넘어감
+    if (
+      isFocused &&
+      permission === 'authorized' &&
+      device &&
+      cameraRef.current
+    ) {
       captureTimer.current = setInterval(async () => {
-        //카메라 캡쳐 타이머를 설정
         try {
           const photo = await cameraRef.current.takePhoto({
-            // 사진을 촬영
             flash: 'off',
             qualityPrioritization: 'speed',
             skipMetadata: true,
@@ -90,14 +94,19 @@ export default function CameraScreen({setPhotoPath}) {
             console.warn('❌ 캡쳐 실패: 경로 없음');
           }
         } catch (err) {
-          //예외 처리
           console.warn('사진 캡쳐 안됨', err);
         }
-      }, 100000); //1초
+      }, 1000);
     }
 
-    return () => clearInterval(captureTimer.current); //타이머 반납
-  }, [permission, device, setPhotoPath]);
+    return () => {
+      if (captureTimer.current) {
+        clearInterval(captureTimer.current);
+        captureTimer.current = null;
+        console.log('🛑 캡처 타이머 해제됨');
+      }
+    };
+  }, [isFocused, permission, device, setPhotoPath]);
 
   /* ② UI 분기 */
   if (error)
