@@ -7,11 +7,18 @@ const RouteCard = ({title, info, highlight}) => {
     <View style={styles.cardRow}>
       <View style={[styles.routeCard, highlight && styles.highlightCard]}>
         <Text style={styles.routeTitle}>{title} 최적경로</Text>
-        <Text style={styles.routeInfo}>{info}</Text>
+        <View style={styles.infoRow}>
+          <Text style={styles.routeInfo}>10분</Text>
+          <Text style={styles.routeSemiInfo}>700m</Text>
+        </View>
       </View>
+
       <View style={[styles.routeCard, highlight && styles.highlightCard]}>
         <Text style={styles.routeTitle}>{title} 최적경로</Text>
-        <Text style={styles.routeInfo}>{info}</Text>
+        <View style={styles.infoRow}>
+          <Text style={styles.routeInfo}>11분</Text>
+          <Text style={styles.routeSemiInfo}>720m</Text>
+        </View>
       </View>
     </View>
   );
@@ -46,13 +53,25 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 5,
   },
+
+  infoRow: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+  },
   routeInfo: {
-    fontSize: 10,
+    fontSize: 30,
+    fontWeight: 'bold',
     color: '#000000',
+    marginRight: 8,
+  },
+  routeSemiInfo: {
+    fontSize: 20,
+    color: '#000000',
+    marginLeft: 4,
   },
   cardRow: {
-    flexDirection: 'row', // 카드들을 가로로 배치
-    justifyContent: 'space-between', // 카드 간 간격을 일정하게 조정
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginTop: 30,
   },
 });
