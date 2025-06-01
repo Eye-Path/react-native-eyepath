@@ -1,10 +1,14 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 
 const InfoBox = () => {
   return (
     <View style={styles.container}>
       <View style={styles.firstBox}>
+        <Image
+          source={require('../../../assets/public/components/NavigationRouteSection/goStraight.png')}
+          style={styles.arrowIcon}
+        />
         <View>
           <Text style={styles.distance}>100m</Text>
           <Text style={styles.label}> 8강의동 입구까지</Text>
@@ -12,6 +16,10 @@ const InfoBox = () => {
       </View>
 
       <View style={styles.secondBox}>
+        <Image
+          source={require('../../../assets/public/components/NavigationRouteSection/turnRight.png')} // 이미지 경로에 맞게 변경
+          style={styles.semiArrowIcon}
+        />
         <Text style={styles.smallDistance}>30m</Text>
       </View>
     </View>
@@ -38,6 +46,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'flex-start',
+  },
+  arrowIcon: {
+    width: 50,
+    height: 50,
+    marginRight: 10,
+    resizeMode: 'contain',
+  },
+  semiArrowIcon: {
+    width: 30,
+    height: 30,
+    marginRight: 20,
+    resizeMode: 'contain',
   },
   icon: {fontSize: 20, marginRight: 8},
   distance: {fontSize: 40, fontWeight: 'bold'},
