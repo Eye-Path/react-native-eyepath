@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 20,
     boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.3)',
+    backgroundColor: 'white',
   },
 
   panel: {
