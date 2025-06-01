@@ -1,31 +1,40 @@
 import * as React from 'react';
-import {StyleSheet, ScrollView} from 'react-native';
+import {StyleSheet, ScrollView, View} from 'react-native';
 
 import InputStartSection from '../components/NavigationRoutePage/InputStartSection/InputStartSection';
 import InputFinishSection from '../components/NavigationRoutePage/InputFinishSection/InputFinishSection';
 import RouteCard from '../components/NavigationRoutePage/RouteCard/RouteCard';
 import StartButton from '../components/NavigationRoutePage/StartButton/StartButton';
+import TmapPage from '../components/NavigationPage/TmapPage';
 
 const NavigationRoutePage = ({route}) => {
   const keyword = route?.params?.keyword || '';
 
   return (
-    <ScrollView style={styles.background}>
-      <InputStartSection />
-      <InputFinishSection keyword={keyword} />
-      <RouteCard />
-      <StartButton />
-    </ScrollView>
+    <View style={styles.container}>
+      {' '}
+      <View style={StyleSheet.absoluteFill}>
+        <TmapPage />
+      </View>
+      <ScrollView style={styles.contentOverlay}>
+        <InputStartSection />
+        <InputFinishSection keyword={keyword} />
+        <RouteCard />
+        <StartButton />
+      </ScrollView>
+    </View>
   );
 };
 
 export default NavigationRoutePage;
 
 const styles = StyleSheet.create({
-  background: {
-    display: 'flex',
+  container: {
     flex: 1,
-    backgroundColor: '#F8F7FF',
+  },
+  contentOverlay: {
+    backgroundColor: 'transparent',
+    flex: 1,
     paddingTop: 50,
     paddingLeft: 32,
     paddingRight: 32,
