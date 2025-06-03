@@ -1,26 +1,14 @@
-// components/RouteCard.jsx
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
 const RouteCard = ({title, info, highlight}) => {
   return (
-    <View style={styles.cardRow}>
+    
       <View style={[styles.routeCard, highlight && styles.highlightCard]}>
         <Text style={styles.routeTitle}>{title} 최적경로</Text>
-        <View style={styles.infoRow}>
-          <Text style={styles.routeInfo}>10분</Text>
-          <Text style={styles.routeSemiInfo}>700m</Text>
-        </View>
+        <Text style={styles.routeInfo}>{info}</Text>
       </View>
-
-      <View style={[styles.routeCard, highlight && styles.highlightCard]}>
-        <Text style={styles.routeTitle}>{title} 최적경로</Text>
-        <View style={styles.infoRow}>
-          <Text style={styles.routeInfo}>11분</Text>
-          <Text style={styles.routeSemiInfo}>720m</Text>
-        </View>
-      </View>
-    </View>
+      
   );
 };
 
@@ -53,25 +41,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 5,
   },
-
-  infoRow: {
-    flexDirection: 'row',
-    alignItems: 'baseline',
-  },
   routeInfo: {
-    fontSize: 30,
-    fontWeight: 'bold',
+    fontSize: 10,
     color: '#000000',
-    marginRight: 8,
   },
-  routeSemiInfo: {
-    fontSize: 20,
-    color: '#000000',
-    marginLeft: 4,
-  },
-  cardRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 30,
-  },
+
 });
+
+
