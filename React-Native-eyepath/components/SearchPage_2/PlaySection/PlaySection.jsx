@@ -1,4 +1,6 @@
-import React, {useRef, useState} from 'react';
+
+import React, { useRef, useState } from 'react';
+
 import {
   Animated,
   PanResponder,
@@ -9,74 +11,66 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
-const {height} = Dimensions.get('window');
-const MIN_Y = height * 0.5; // 기본 올라와있는 위치
-const MAX_Y = height - 40; // 손잡이만 보이게 내리는 위치
+const { height } = Dimensions.get('window');
+const MIN_Y = height * 0.5;
+const MAX_Y = height - 40;
 
-const PlaySection = ({keyword}) => {
-  const [inputValue, setInputValue] = useState(keyword);
-
+const PlaySection = ({ selectedPlace }) => {
+  const [inputValue] = useState(selectedPlace?.name || '');
   const translateY = useRef(new Animated.Value(MIN_Y)).current;
 
   const panResponder = useRef(
     PanResponder.create({
-      onMoveShouldSetPanResponder: (_, gestureState) => {
-        return Math.abs(gestureState.dy) > 10;
-      },
+      onMoveShouldSetPanResponder: (_, gestureState) => Math.abs(gestureState.dy) > 10,
       onPanResponderMove: (_, gestureState) => {
         const newY = gestureState.dy + MIN_Y;
-        if (newY >= MIN_Y && newY <= MAX_Y) {
-          translateY.setValue(newY);
-        }
+        if (newY >= MIN_Y && newY <= MAX_Y) translateY.setValue(newY);
       },
       onPanResponderRelease: (_, gestureState) => {
         if (gestureState.dy > 50) {
-          // 아래로 슬라이드
-          Animated.spring(translateY, {
-            toValue: MAX_Y,
-            useNativeDriver: false,
-          }).start();
+          Animated.spring(translateY, { toValue: MAX_Y, useNativeDriver: false }).start();
         } else {
-          // 다시 위로
-          Animated.spring(translateY, {
-            toValue: MIN_Y,
-            useNativeDriver: false,
-          }).start();
+          Animated.spring(translateY, { toValue: MIN_Y, useNativeDriver: false }).start();
         }
       },
-    }),
+    })
+
   ).current;
 
   const navigation = useNavigation();
 
   return (
-    <Animated.View
-      style={[styles.container, {top: translateY}]}
-      {...panResponder.panHandlers}>
+    <Animated.View style={[styles.container, { top: translateY }]} {...panResponder.panHandlers}>
       <View style={styles.handle} />
       <View style={styles.destinationWrapper}>
         <View style={styles.destinationTextContainer}>
-          <Text style={styles.destination}>
-            경기대학교 수원캠퍼스 후문(동문)
-          </Text>
+          <Text style={styles.destination}>{selectedPlace.name}</Text>
         </View>
         <TouchableOpacity
           style={styles.navButton}
-          onPress={() =>
-            navigation.navigate('NavigationRoutePage', {keyword: inputValue})
-          }>
+          onPress={() => navigation.navigate('NavigationRoutePage', { 
+            keyword: inputValue,
+            latitude: selectedPlace.latitude,
+            longitude: selectedPlace.longitude,
+            address: selectedPlace.address,
+          })}
+        >
           <Image
             source={require('../../../assets/public/components/PlaySection/play.png')}
             style={styles.navIcon}
           />
         </TouchableOpacity>
       </View>
-      <Text style={styles.address}>경기도 수원시 영통구 광교산로 154-42</Text>
+      <Text style={styles.address}>{selectedPlace.address}</Text>
+
     </Animated.View>
   );
 };
+
+
+export default PlaySection;
 
 const styles = StyleSheet.create({
   container: {
@@ -90,7 +84,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 12,
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: -3},
+
+
     shadowOpacity: 0.1,
     shadowRadius: 6,
     elevation: 10,
@@ -136,5 +131,3 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
 });
-
-export default PlaySection;
