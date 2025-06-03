@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   TextInput,
@@ -6,39 +6,51 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {useState} from 'react';
 
-const TextInputSection = ({keyword}) => {
+import { useNavigation } from '@react-navigation/native';
+
+const TextInputSection = ({ keyword, setKeyword, onSelect }) => {
   const navigation = useNavigation();
-  const [inputValue, setInputValue] = useState(keyword);
+  const [inputValue, setInputValue] = useState(keyword || '');
+
+  useEffect(() => {
+    setInputValue(keyword || '');
+  }, [keyword]);
+
+  const handleInputChange = (text) => {
+    setInputValue(text);
+    setKeyword(text); // 부모에게 입력값 전달
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.textInputWrapper}>
-        {/* 뒤로가기 버튼 */}
         <TouchableOpacity
           style={styles.backButton}
-          onPress={() => navigation.goBack()}>
+          onPress={() => navigation.goBack()}
+        >
           <Image
             source={require('../../../assets/public/components/TextInputSection/arrow.png')}
             style={styles.backIcon}
           />
         </TouchableOpacity>
 
-        <TextInput /* input */
+        <TextInput
           placeholder="목적지를 입력해주세요."
           placeholderTextColor="#000000"
           style={styles.input}
           value={inputValue}
-          onChangeText={setInputValue}
+          onChangeText={handleInputChange}
           onSubmitEditing={() => {
             if (inputValue.trim() !== '') {
-              navigation.navigate('SearchPage_2', {keyword: inputValue});
+              navigation.navigate('SearchPage_2', { keyword: inputValue });
             }
           }}
+          autoCorrect={false}
+          keyboardType="default"
+          multiline={false}
         />
-        {/* 마이크 아이콘 */}
+
         <TouchableOpacity style={styles.iconMic}>
           <Image
             source={require('../../../assets/public/components/TextInputSection/microphone.png')}
@@ -54,71 +66,44 @@ export default TextInputSection;
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%',
+    marginTop: 0,
   },
-
-  backButton: {
-    display: 'flex',
-    marginLeft: 15,
-    retate: '90deg',
-  },
-
-  backIcon: {
-    display: 'flex',
-    width: 24,
-    height: 24,
-    transform: [{rotate: '270deg'}],
-  },
-
   textInputWrapper: {
-    marginTop: 18,
-    display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    height: 57,
-    width: '100%',
+    backgroundColor: '#fff',
+    borderRadius: 25,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
     borderWidth: 1,
     borderColor: '#9090FF',
-    borderRadius: 25,
-    backgroundColor: '#FFFFFF',
-    justifyContent: 'space-between',
-    boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.25)',
+    shadowColor: '#000',
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 5,
+    elevation: 3, // 안드로이드 그림자
+  },
+  backButton: {
+    marginRight: 15,
+  },
+  backIcon: {
+    width: 24,
+    height: 24,
+    transform: [{ rotate: '270deg' }],
   },
   input: {
     flex: 1,
-    textAlign: 'center',
-    paddingLeft: 9,
-    fontSize: 18,
+    fontSize: 16,
+    color: '#000',
+    paddingVertical: 0,
   },
-
+  iconMic: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 14,
+  },
   icon: {
-    display: 'flex',
     width: 24,
     height: 24,
-  },
-
-  iconMic: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 14,
-  },
-
-  iconArrow: {
-    marginTop: 18,
-    marginLeft: 10,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: '#9090FF',
-    backgroundColor: '#FFFFFF',
-    height: 57,
-    width: 57,
-    borderRadius: 50,
-    boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.25)',
   },
 });
