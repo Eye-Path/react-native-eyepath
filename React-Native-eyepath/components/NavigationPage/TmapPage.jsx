@@ -1,28 +1,41 @@
-import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
-import React from 'react';
-import {WebView} from 'react-native-webview';
+import React, { useState, useRef, useEffect } from 'react';
+import { WebView } from 'react-native-webview';
 
-const TmapPage = () => {
+const TmapPage = ({ destination }) => {
+  const webviewRef = useRef(null);
+  const [webViewReady, setWebViewReady] = useState(false); // ✅ 함수 안에 위치시킴
+
+  useEffect(() => {
+    if (destination && webViewReady && webviewRef.current) {
+      const message = JSON.stringify({
+        action: 'setLocation',
+        lat: destination.latitude,
+        lng: destination.longitude,
+      });
+      webviewRef.current.postMessage(message);
+    }
+  }, [destination, webViewReady]);
+
   return (
-    <SafeAreaView style={styles.container}>
-      <WebView
-        originWhitelist={['*']}
-        source={require('../../assets/tmap/tmap.html')}
-        allowFileAccess={true}
-        style={styles.webview}
-      />
-    </SafeAreaView>
+    <WebView
+      ref={webviewRef}
+      source={{ uri: 'https://capable-marigold-e98cdc.netlify.app/' }}
+      style={{ flex: 1 }}
+      javaScriptEnabled={true}
+      originWhitelist={['*']}
+      onMessage={(event) => {
+        try {
+          const data = JSON.parse(event.nativeEvent.data);
+          if (data.action === 'ready') {
+            setWebViewReady(true);
+          }
+        } catch (e) {
+          console.error('Invalid WebView message:', e);
+        }
+      }}
+    />
+
   );
 };
 
 export default TmapPage;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-
-  webview: {
-    flex: 1,
-  },
-});
