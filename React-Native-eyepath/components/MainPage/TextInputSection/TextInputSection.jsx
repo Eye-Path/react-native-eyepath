@@ -1,4 +1,4 @@
-import {React, useState} from 'react';
+import React from 'react';
 import {
   View,
   TextInput,
@@ -7,18 +7,30 @@ import {
   Image,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {useState} from 'react';
 
-const TextInputSection = () => {
+const TextInputSection = ({keyword}) => {
   const navigation = useNavigation();
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState(keyword);
 
   return (
     <View style={styles.container}>
       <View style={styles.textInputWrapper}>
+        {/* 뒤로가기 버튼 */}
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}>
+          <Image
+            source={require('../../../assets/public/components/TextInputSection/arrow.png')}
+            style={styles.backIcon}
+          />
+        </TouchableOpacity>
+
         <TextInput /* input */
           placeholder="목적지를 입력해주세요."
           placeholderTextColor="#000000"
           style={styles.input}
+          value={inputValue}
           onChangeText={setInputValue}
           onSubmitEditing={() => {
             if (inputValue.trim() !== '') {
@@ -34,15 +46,6 @@ const TextInputSection = () => {
           />
         </TouchableOpacity>
       </View>
-      {/* 화살표 아이콘 */}
-      <TouchableOpacity
-        style={styles.iconArrow}
-        onPress={() => navigation.navigate('SearchPage')}>
-        <Image
-          source={require('../../../assets/public/components/TextInputSection/navigation-pointer.png')}
-          style={styles.icon}
-        />
-      </TouchableOpacity>
     </View>
   );
 };
@@ -56,7 +59,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginTop: 18,
-    width: '100%',
+  },
+
+  backButton: {
+    display: 'flex',
+    marginLeft: 15,
+    retate: '90deg',
+  },
+
+  backIcon: {
+    display: 'flex',
+    width: 24,
+    height: 24,
+    transform: [{rotate: '270deg'}],
   },
 
   textInputWrapper: {
@@ -65,7 +80,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     height: 57,
-    width: 260,
+    width: '100%',
     borderWidth: 1,
     borderColor: '#9090FF',
     borderRadius: 25,
@@ -74,10 +89,8 @@ const styles = StyleSheet.create({
     boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.25)',
   },
   input: {
-    paddingLeft: 9,
+    paddingLeft: 10,
     fontSize: 18,
-    flex: 1,
-    textAlign: 'center',
   },
 
   icon: {
