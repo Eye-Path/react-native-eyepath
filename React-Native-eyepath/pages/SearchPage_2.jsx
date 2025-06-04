@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { View, ScrollView, StyleSheet, Dimensions } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, ScrollView, StyleSheet, Dimensions} from 'react-native';
 
 import TextInputSection from '../components/SearchPage_2/TextInputSection/TextInputSection';
 import PlaySection from '../components/SearchPage_2/PlaySection/PlaySection';
 import TmapPage from '../components/NavigationPage/TmapPage';
 
-const { height, width } = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
 
-const SearchPage_2 = ({ route }) => {
-  const place = route?.params?.place || { name: '', address: '' };
+const SearchPage_2 = ({route}) => {
+  const place = route?.params?.place || {name: '', address: ''};
   const [keyword, setKeyword] = useState(place.name || '');
   const [selectedDestination, setSelectedDestination] = useState(null);
 
@@ -20,7 +20,6 @@ const SearchPage_2 = ({ route }) => {
 
   return (
     <View style={styles.pageContainer}>
-
       {/* 지도 배경: 항상 터치 가능 */}
       <View style={styles.mapContainer}>
         <TmapPage destination={selectedDestination} />
@@ -63,9 +62,7 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flex: 1,
     paddingBottom: height * 0.5,
-
   },
 });
 
 export default SearchPage_2;
-

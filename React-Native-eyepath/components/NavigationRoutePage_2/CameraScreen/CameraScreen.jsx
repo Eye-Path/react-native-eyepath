@@ -96,7 +96,7 @@ export default function CameraScreen({setPhotoPath}) {
         } catch (err) {
           console.warn('사진 캡쳐 안됨', err);
         }
-      }, 1000);
+      }, 100000);
     }
 
     return () => {
