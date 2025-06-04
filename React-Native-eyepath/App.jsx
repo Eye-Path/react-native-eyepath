@@ -14,6 +14,6 @@ const App = () => {
       </NavigationContainer>
     </QueryClientProvider>
   );
-}
+};
 
 export default App;

@@ -9,10 +9,8 @@ import {
 } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import axios from 'axios';
-import * as React from 'react';
-import {StyleSheet, ScrollView, View} from 'react-native';
 
-import TmapRouteDraw from '../components/NavigationRoutePage/TmapRouteDraw/TmapRouteDraw';
+//import TmapRouteDraw from '../components/NavigationRoutePage/TmapRouteDraw/TmapRouteDraw';
 import InputStartSection from '../components/NavigationRoutePage/InputStartSection/InputStartSection';
 import InputFinishSection from '../components/NavigationRoutePage/InputFinishSection/InputFinishSection';
 import RouteCard from '../components/NavigationRoutePage/RouteCard/RouteCard';
@@ -135,7 +133,7 @@ const NavigationRoutePage = ({route}) => {
         keyword={keyword}
       />
 
-      {startLocation && endLocation && (
+      {/* {startLocation && endLocation && (
         <TmapRouteDraw
           route={{
             params: {
@@ -145,7 +143,7 @@ const NavigationRoutePage = ({route}) => {
             },
           }}
         />
-      )}
+      )} */}
 
       <RouteCard routeCoordinates={routeCoordinates} />
       <StartButton startLocation={startLocation} endLocation={endLocation} />
