@@ -16,10 +16,13 @@ const NavigationRoutePage_2 = () => {
   const [photoPath, setPhotoPath] = useState(null);
 
   return (
-    <QueryClientProvider client={queryClient}>
+  <QueryClientProvider client={queryClient}>
+    <View style={{flex: 1}}>
+      {/* TmapPage as background */}
       <View style={StyleSheet.absoluteFill}>
         <TmapPage />
       </View>
+      {/* Foreground content */}
       <ScrollView contentContainerStyle={styles.background}>
         <View>
           <InfoBox />
@@ -29,8 +32,9 @@ const NavigationRoutePage_2 = () => {
         <Camera photoPath={photoPath} />
         <BottomSection />
       </ScrollView>
-    </QueryClientProvider>
-  );
+    </View>
+  </QueryClientProvider>
+);
 };
 
 export default NavigationRoutePage_2;
@@ -38,12 +42,12 @@ export default NavigationRoutePage_2;
 const styles = StyleSheet.create({
   background: {
     display: 'flex',
-    justifyContent: 'space-between',
-    flex: 1,
-    backgroundColor: '#F8F7FF',
-    paddingTop: 50,
-    paddingLeft: 32,
-    paddingRight: 32,
-    paddingBottom: 50,
+  justifyContent: 'space-between',
+  flexGrow: 1,
+  backgroundColor: 'rgba(248, 247, 255, 0.8)',
+  paddingTop: 50,
+  paddingLeft: 32,
+  paddingRight: 32,
+  paddingBottom: 50,
   },
 });

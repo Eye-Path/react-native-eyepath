@@ -1,9 +1,7 @@
+# encoding: UTF-8
 # Resolve react_native_pods.rb with node to allow for hoisting
-require Pod::Executable.execute_command('node', ['-p',
-  'require.resolve(
-    "react-native/scripts/react_native_pods.rb",
-    {paths: [process.argv[1]]},
-  )', __dir__]).strip
+react_native_pods_script = `node -p "require.resolve('react-native/scripts/react_native_pods.rb')"`
+require react_native_pods_script.strip
 
 platform :ios, min_ios_version_supported
 prepare_react_native_project!
@@ -36,15 +34,11 @@ end
 
 def node_require(script)
    # Resolve script with node to allow for hoisting
-   require Pod::Executable.execute_command('node', ['-p',
-     "require.resolve(
-       '#{script}',
-       {paths: [process.argv[1]]},
-     )", __dir__]).strip
+   require Pod::Executable.execute_command('node', ['-p', "require.resolve('#{script}', {paths: [process.argv[1]]})", __dir__]).strip
  end
 
-node_require('react-native/scripts/react_native_pods.rb')
-node_require('react-native-permissions/scripts/setup.rb')
+permissions_setup_script = `node -p "require.resolve('react-native-permissions/scripts/setup.rb')"`
+require permissions_setup_script.strip
 
 prepare_react_native_project!
 

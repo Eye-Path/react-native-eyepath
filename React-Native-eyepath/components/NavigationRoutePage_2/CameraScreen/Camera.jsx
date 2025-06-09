@@ -48,7 +48,8 @@ const Camera = ({photoPath}) => {
   return (
     <>
       <View style={styles.container}>
-        {error ? <Text>Error : {error}</Text> : <Text>msg : {message}</Text>}
+        {/* {error ? <Text>Error : {error}</Text> : <Text>msg : {message}</Text>} */}
+        <Text>위험하지 않음.</Text>
       </View>
     </>
   );
@@ -56,7 +57,12 @@ const Camera = ({photoPath}) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 80,
+    position: 'absolute',
+    display: 'flex',
+    top: 360, 
+    left: 32,
+    right: 0,
+    zIndex: 10,
   },
 });
 
