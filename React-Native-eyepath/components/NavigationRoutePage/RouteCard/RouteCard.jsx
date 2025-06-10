@@ -1,14 +1,15 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const RouteCard = ({title, info, highlight}) => {
+const RouteCard = ({title, info, distance, highlight}) => {
   return (
-    
-      <View style={[styles.routeCard, highlight && styles.highlightCard]}>
-        <Text style={styles.routeTitle}>{title} 최적경로</Text>
-        <Text style={styles.routeInfo}>{info}</Text>
+    <View style={[styles.routeCard, highlight && styles.highlightCard]}>
+      <Text style={styles.routeTitle}>{title} 최적경로</Text>
+      <View style={styles.infoRow}>
+        <Text style={styles.routeInfoLarge}>{info}13분</Text>
+        <Text style={styles.routeInfoSmall}>{distance}721m</Text>
       </View>
-      
+    </View>
   );
 };
 
@@ -21,10 +22,9 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     paddingVertical: 16,
     height: 100,
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
     alignItems: 'flex-start',
     marginTop: 380,
-    paddingLeft: 15,
     elevation: 3,
     shadowColor: '#000',
     shadowOffset: {width: 2, height: 2},
@@ -41,11 +41,20 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 5,
   },
-  routeInfo: {
-    fontSize: 10,
-    color: '#000000',
+  infoRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
   },
-
+  routeInfoLarge: {
+    fontSize: 28,
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+  routeInfoSmall: {
+    fontSize: 15,
+    color: '#555555',
+    marginLeft: 6,
+    marginBottom: 3,
+  },
 });
-
 
