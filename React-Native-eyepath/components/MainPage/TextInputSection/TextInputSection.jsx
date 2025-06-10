@@ -26,18 +26,22 @@ const TextInputSection = ({keyword}) => {
           />
         </TouchableOpacity>
 
-        <TextInput /* input */
-          placeholder="목적지를 입력해주세요."
-          placeholderTextColor="#000000"
-          style={styles.input}
-          value={inputValue}
-          onChangeText={setInputValue}
-          onSubmitEditing={() => {
-            if (inputValue.trim() !== '') {
-              navigation.navigate('SearchPage_2', {keyword: inputValue});
-            }
-          }}
-        />
+        <TextInput
+  placeholder="목적지를 입력해주세요."
+  placeholderTextColor="#000000"
+  style={styles.input}
+  value={inputValue}
+  onChangeText={setInputValue}
+  onSubmitEditing={() => {
+    if (inputValue.trim() !== '') {
+      navigation.navigate('SearchPage', {keyword: inputValue});
+    }
+  }}
+  onFocus={() => {
+    navigation.navigate('SearchPage', {keyword: inputValue});
+  }}
+/>
+
         {/* 마이크 아이콘 */}
         <TouchableOpacity style={styles.iconMic}>
           <Image
@@ -120,3 +124,4 @@ const styles = StyleSheet.create({
     boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.25)',
   },
 });
+
