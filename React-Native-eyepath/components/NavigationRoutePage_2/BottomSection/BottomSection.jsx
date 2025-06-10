@@ -26,8 +26,8 @@ const BottomSection = () => {
           <Text style={styles.label}>도착 예정 시간</Text>
         </View>
         <View>
-          <Text style={styles.bold}>700m</Text>
-          <Text style={styles.label}>남은 시간</Text>
+          <Text style={styles.bold}>720m</Text>
+          <Text style={styles.label}>남은 거리</Text>
         </View>
         <View />
       </View>
